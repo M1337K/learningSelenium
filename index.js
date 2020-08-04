@@ -22,10 +22,10 @@ const proxyServer = '110.164.253.85:8080'
 const driver = new Builder()
     .forBrowser('firefox')
     .setFirefoxOptions(options)
-    .setProxy(proxy.manual({
-        http: proxyServer,
-        https: proxyServer
-    }))
+    // .setProxy(proxy.manual({
+    //     http: proxyServer,
+    //     https: proxyServer
+    // }))
     .build();
 driver.get('https://google.com');
 
@@ -72,17 +72,46 @@ driver.get('https://google.com');
 
 
 //CHECKBOX FORM 03 by XPATH SELECTORS
-async function checkboxForm() {
+// async function checkboxForm() {
+//     try {
+//         (await driver).get('https://rori4.github.io/selenium-practice/#/pages/practice/checkbox-form');
+//         (await driver).findElement(By.xpath("//input[@id='name']")).sendKeys('My name');
+//         (await driver).findElement(By.xpath("//input[@id='comment']")).sendKeys('My comment');
+//         (await driver).findElement(By.xpath("//input[@value='presidential-suite']/following::span")).click();
+//         (await driver).findElement(By.xpath("//nb-checkbox[@value='breakfast']/label/span")).click();
+//         (await driver).findElement(By.xpath("//nb-checkbox[@value='lunch']/label/span")).click();
+//         (await driver).findElement(By.xpath("//button[@id='submit']")).click();
+//     } catch (error) {
+//         console.log(error)
+//     }
+// }
+// checkboxForm()
+
+
+//DATEPICKER FORM 05
+// async function datepickerFunction(){
+//     try {
+//         (await driver).get('https://rori4.github.io/selenium-practice/#/pages/practice/datepicker-form');
+//         (await driver).findElement(By.xpath("//input[@formcontrolname='dateOne']")).sendKeys('Aug 4, 2020');
+//         (await driver).findElement(By.xpath("//input[@formcontrolname='dateTwo']")).sendKeys('Aug 11, 2020 - Aug 18, 2020');
+//         (await (await driver).findElement(By.xpath("//button[@id='submit']"))).click();
+//     } catch (error) {
+//         console.log(error)
+//     }
+// }
+// datepickerFunction()
+
+
+//FILE UPLOAD FORM
+async function fileUpload() {
     try {
-        (await driver).get('https://rori4.github.io/selenium-practice/#/pages/practice/checkbox-form');
-        (await driver).findElement(By.xpath("//input[@id='name']")).sendKeys('My name');
-        (await driver).findElement(By.xpath("//input[@id='comment']")).sendKeys('My comment');
-        (await driver).findElement(By.xpath("//input[@value='presidential-suite']/following::span")).click();
-        (await driver).findElement(By.xpath("//nb-checkbox[@value='breakfast']/label/span")).click();
-        (await driver).findElement(By.xpath("//nb-checkbox[@value='lunch']/label/span")).click();
+        (await driver).get('https://rori4.github.io/selenium-practice/#/pages/practice/file-form');
+        (await driver).findElement(By.xpath("//input[@formcontrolname='file']")).sendKeys(__dirname + '\\example.jpg');
         (await driver).findElement(By.xpath("//button[@id='submit']")).click();
     } catch (error) {
         console.log(error)
     }
 }
-checkboxForm()
+fileUpload()
+
+
