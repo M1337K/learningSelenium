@@ -12,7 +12,6 @@ const proxyServer = '110.164.253.85:8080'
 // driver.get('https://www.whatismyip.com/');
 
 //SETTING my browser options
-
 // options.setPreference('browser.download.dir', 'C:\\Users\noname\Desktop\JavaScript');
 // options.setPreference('browser.download.folderList', 2);
 // options.setPreference('browser.helperApps.neverAsk.saveToDisk', 'text/csv');
