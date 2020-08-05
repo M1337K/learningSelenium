@@ -1,4 +1,4 @@
-const { Builder, By } = require('selenium-webdriver');
+const { Builder, By, Key } = require('selenium-webdriver');
 const firefox = require('selenium-webdriver/firefox');
 const options = new firefox.Options();
 
@@ -71,7 +71,7 @@ driver.get('https://google.com');
 // radioButtonForm()
 
 
-//CHECKBOX FORM 03 by XPATH SELECTORS
+//CHECKBOX FORM by XPATH SELECTORS 03
 // async function checkboxForm() {
 //     try {
 //         (await driver).get('https://rori4.github.io/selenium-practice/#/pages/practice/checkbox-form');
@@ -102,16 +102,62 @@ driver.get('https://google.com');
 // datepickerFunction()
 
 
-//FILE UPLOAD FORM
-async function fileUpload() {
+//FILE UPLOAD FORM 06
+// async function fileUpload() {
+//     try {
+//         (await driver).get('https://rori4.github.io/selenium-practice/#/pages/practice/file-form');
+//         (await driver).findElement(By.xpath("//input[@formcontrolname='file']")).sendKeys(__dirname + '\\example.jpg');
+//         (await driver).findElement(By.xpath("//button[@id='submit']")).click();
+//     } catch (error) {
+//         console.log(error)
+//     }
+// }
+// fileUpload()
+
+
+//TABLE EXTRACT
+async function extractTable() {
+    let results = [];
     try {
-        (await driver).get('https://rori4.github.io/selenium-practice/#/pages/practice/file-form');
-        (await driver).findElement(By.xpath("//input[@formcontrolname='file']")).sendKeys(__dirname + '\\example.jpg');
-        (await driver).findElement(By.xpath("//button[@id='submit']")).click();
+        (await driver).get("https://rori4.github.io/selenium-practice/#/pages/tables/smart-table");
+        let numberOfPages = 6;
+        for (let i = 0; i < numberOfPages; i++) {
+            let rows = await driver.findElements(By.xpath("//tbody//tr"));
+            for (const row of rows) {
+                let rowData = await row.getText();
+                let user = rowData.split(/\n/);
+                results.push({
+                    id: user[0],
+                    firstName: user[1],
+                    lastName: user[2],
+                    username: user[3],
+                    email: user[4],
+                    age: user[5]
+                });
+            }
+            if (i !== numberOfPages - 1) {
+                await driver.findElement(By.css(".page-link-next")).click();
+            }
+        }
+        console.table(results);
     } catch (error) {
-        console.log(error)
+        console.log(error);
     }
 }
-fileUpload()
+extractTable();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
